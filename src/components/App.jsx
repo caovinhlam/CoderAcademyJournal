@@ -34,6 +34,8 @@ import useStore from "../reducer";
 //   }
 // }
 
+const api = import.meta.env.VITE_API_ENDPOINT || "http://localhost:4000/api/v1";
+
 function App() {
   // const [entries, setEntries] = useState([
   //   { category: "Food", entry: "Hello" },
@@ -47,7 +49,7 @@ function App() {
 
   useEffect(() => {
     async function getEntries() {
-      const res = await fetch('http://localhost:4000/api/v1/entries')
+      const res = await fetch(`${api}/entries`)
       // const data = await res.json()
       // setEntries(data)
       // setEntries(await res.json());
@@ -76,7 +78,7 @@ function App() {
 
   async function addEntry(category, entry) {
     const newEntry = { category, entry };
-    const res = await fetch("http://localhost:4000/api/v1/entries", {
+    const res = await fetch(`${api}/entries`, {
       method: "post",
       headers: {
         Accept: "application/json",
